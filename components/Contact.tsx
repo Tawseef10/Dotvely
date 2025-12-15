@@ -78,7 +78,6 @@ const Contact: React.FC = () => {
                 <div>
                   <p className="text-sm text-slate-500 font-medium mb-1">Call Us Directly</p>
                   <p className="text-2xl font-bold text-slate-900">8527960872</p>
-                  <p className="text-lg font-semibold text-slate-700">9653057438</p>
                 </div>
                 <div className="ml-auto opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">
                     <ArrowRight className="text-indigo-400" />
