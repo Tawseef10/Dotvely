@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,8 +9,16 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { BackgroundGrid } from './components/ui/BackgroundGrid';
 
+interface Ripple {
+  id: number;
+  x: number;
+  y: number;
+}
+
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'projects'>('home');
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+  const [nextId, setNextId] = useState(0);
 
   const navigateToProjects = () => {
     window.scrollTo(0, 0);
@@ -22,10 +30,42 @@ const App: React.FC = () => {
     setCurrentView('home');
   };
 
+  // Global liquid-like click ripple
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      const id = nextId;
+      setNextId((prev) => prev + 1);
+
+      setRipples((prev) => [...prev, { id, x, y }]);
+
+      // Remove ripple after animation
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== id));
+      }, 700);
+    };
+
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, [nextId]);
+
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Layer */}
       <BackgroundGrid />
+
+      {/* Global click liquid animation */}
+      <div className="pointer-events-none fixed inset-0 z-20">
+        {ripples.map((r) => (
+          <span
+            key={r.id}
+            className="absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-400/40 blur-md animate-[liquidRipple_0.7s_ease-out_forwards]"
+            style={{ left: r.x, top: r.y }}
+          />
+        ))}
+      </div>
 
       {/* Main Content */}
       <div className="relative z-10">
