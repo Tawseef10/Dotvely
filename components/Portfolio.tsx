@@ -6,10 +6,34 @@ interface PortfolioProps {
 }
 
 const projects = [
-  { id: 1, title: "Urban Coffee", category: "E-Commerce", img: "https://picsum.photos/seed/coffee/600/400" },
-  { id: 2, title: "Apex Construction", category: "Business", img: "https://picsum.photos/seed/construct/600/400" },
-  { id: 3, title: "Lumina Studio", category: "Portfolio", img: "https://picsum.photos/seed/studio/600/400" },
-  { id: 4, title: "Fresh Eats", category: "Restaurant", img: "https://picsum.photos/seed/food/600/400" },
+  { 
+    id: 1, 
+    title: "Urban Coffee", 
+    category: "E-Commerce", 
+    img: "https://picsum.photos/seed/coffee/600/400",
+    url: "https://your-local-website-1.com" 
+  },
+  { 
+    id: 2, 
+    title: "Apex Construction", 
+    category: "Business", 
+    img: "https://picsum.photos/seed/construct/600/400",
+    url: "https://your-local-website-2.com" 
+  },
+  { 
+    id: 3, 
+    title: "Lumina Studio", 
+    category: "Portfolio", 
+    img: "https://picsum.photos/seed/studio/600/400",
+    url: "https://your-local-website-3.com" 
+  },
+  { 
+    id: 4, 
+    title: "Fresh Eats", 
+    category: "Restaurant", 
+    img: "https://picsum.photos/seed/food/600/400",
+    url: "https://your-local-website-4.com" 
+  },
 ];
 
 const Portfolio: React.FC<PortfolioProps> = ({ onViewAll }) => {
@@ -34,7 +58,13 @@ const Portfolio: React.FC<PortfolioProps> = ({ onViewAll }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <div key={project.id} className="group relative rounded-2xl overflow-hidden bg-slate-100 cursor-pointer shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500">
+            <a
+              key={project.id}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-2xl overflow-hidden bg-slate-100 cursor-pointer shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500"
+            >
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
                   src={project.img} 
@@ -55,7 +85,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onViewAll }) => {
                     </div>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
