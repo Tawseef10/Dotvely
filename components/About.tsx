@@ -14,8 +14,8 @@ const About: React.FC = () => {
             
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
               <img 
-                src="https://picsum.photos/seed/techworkspace/800/600" 
-                alt="Modern Agency Workspace" 
+                src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Dotvely team collaborating in a modern workspace" 
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
