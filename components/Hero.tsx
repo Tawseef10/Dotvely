@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
         
         {/* Primary Glow - follows mouse closely */}
         <div 
-          className="absolute w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-multiply transition-transform duration-100 ease-out"
+          className="absolute w-[650px] h-[650px] bg-indigo-500/20 rounded-full blur-[100px] mix-blend-multiply transition-transform duration-100 ease-out"
           style={{
             left: -300,
             top: -300,
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
 
         {/* Secondary Glow - follows mouse with lag/inverse for parallax */}
         <div 
-          className="absolute w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] mix-blend-multiply transition-transform duration-500 ease-out"
+          className="absolute w-[450px] h-[450px] bg-blue-400/20 rounded-full blur-[90px] mix-blend-multiply transition-transform duration-500 ease-out"
           style={{
             left: -200,
             top: -200,
