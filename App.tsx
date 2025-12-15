@@ -18,7 +18,6 @@ interface Ripple {
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'projects'>('home');
   const [ripples, setRipples] = useState<Ripple[]>([]);
-  const [nextId, setNextId] = useState(0);
 
   const navigateToProjects = () => {
     window.scrollTo(0, 0);
@@ -30,14 +29,22 @@ const App: React.FC = () => {
     setCurrentView('home');
   };
 
-  // Global liquid-like click ripple
+  // Liquid-like click ripple limited to hero section
   useEffect(() => {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
     const handleClick = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
       const x = e.clientX;
       const y = e.clientY;
 
-      const id = nextId;
-      setNextId((prev) => prev + 1);
+      // Ensure the click is actually within the hero bounds
+      if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+        return;
+      }
+
+      const id = Date.now() + Math.random();
 
       setRipples((prev) => [...prev, { id, x, y }]);
 
@@ -47,9 +54,9 @@ const App: React.FC = () => {
       }, 700);
     };
 
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
-  }, [nextId]);
+    hero.addEventListener('click', handleClick);
+    return () => hero.removeEventListener('click', handleClick);
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">

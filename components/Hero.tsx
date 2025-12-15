@@ -33,6 +33,7 @@ const Hero: React.FC = () => {
 
   return (
     <section 
+      id="hero"
       ref={containerRef}
       className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[95vh]"
     >
