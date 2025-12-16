@@ -53,6 +53,7 @@ const AUTO_PLAY_INTERVAL = 7000; // ms
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const goTo = (index: number) => {
     const total = testimonials.length;
@@ -72,6 +73,27 @@ const Testimonials: React.FC = () => {
     }, AUTO_PLAY_INTERVAL);
 
     return () => clearTimeout(timer);
+  }, [activeIndex, isHovering]);
+
+  // Live progress bar tied to autoplay
+  useEffect(() => {
+    if (isHovering) return;
+
+    setProgress(0);
+    const start = performance.now();
+    let frameId: number;
+
+    const tick = () => {
+      const elapsed = performance.now() - start;
+      const pct = Math.min((elapsed / AUTO_PLAY_INTERVAL) * 100, 100);
+      setProgress(pct);
+      if (pct < 100) {
+        frameId = requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
   }, [activeIndex, isHovering]);
 
   const active = testimonials[activeIndex];
@@ -134,7 +156,7 @@ const Testimonials: React.FC = () => {
           <article className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-[0_22px_60px_rgba(15,23,42,0.12)] p-8 sm:p-10 transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
             <div className="absolute inset-px rounded-[1.4rem] bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.13),transparent_55%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.12),transparent_55%)] opacity-80" />
 
-            <div className="relative flex flex-col gap-8 animate-float">
+            <div className="relative flex flex-col gap-8">
               <div className="flex items-start gap-4">
                 <div className="shrink-0">
                   <div
@@ -190,7 +212,8 @@ const Testimonials: React.FC = () => {
                 <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
                   <div
                     key={active.id}
-                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 animate-[shimmer_7s_linear_forwards]"
+                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 transition-[width] duration-150 ease-linear"
+                    style={{ width: `${progress}%` }}
                   />
                 </div>
                 <span className="text-xs tabular-nums text-slate-400">
