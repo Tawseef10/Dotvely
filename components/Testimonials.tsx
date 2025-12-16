@@ -53,7 +53,6 @@ const AUTO_PLAY_INTERVAL = 7000; // ms
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   const goTo = (index: number) => {
     const total = testimonials.length;
@@ -73,27 +72,6 @@ const Testimonials: React.FC = () => {
     }, AUTO_PLAY_INTERVAL);
 
     return () => clearTimeout(timer);
-  }, [activeIndex, isHovering]);
-
-  // Live progress bar tied to autoplay
-  useEffect(() => {
-    if (isHovering) return;
-
-    setProgress(0);
-    const start = performance.now();
-    let frameId: number;
-
-    const tick = () => {
-      const elapsed = performance.now() - start;
-      const pct = Math.min((elapsed / AUTO_PLAY_INTERVAL) * 100, 100);
-      setProgress(pct);
-      if (pct < 100) {
-        frameId = requestAnimationFrame(tick);
-      }
-    };
-
-    frameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frameId);
   }, [activeIndex, isHovering]);
 
   const active = testimonials[activeIndex];
@@ -207,19 +185,6 @@ const Testimonials: React.FC = () => {
                 </div>
               </div>
 
-              {/* Progress bar */}
-              <div className="mt-4 flex items-center gap-3">
-                <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
-                  <div
-                    key={active.id}
-                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 transition-[width] duration-150 ease-linear"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <span className="text-xs tabular-nums text-slate-400">
-                  {String(activeIndex + 1).padStart(2, '0')}/{String(testimonials.length).padStart(2, '0')}
-                </span>
-              </div>
             </div>
           </article>
 
