@@ -63,7 +63,15 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Dotvely. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Dotvely. All rights reserved.{" "}
+            <a
+              href="tel:8527960872"
+              className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+            >
+              Made by - Tawseef Ahmad Shaikh
+            </a>
+          </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
