@@ -147,13 +147,13 @@ const Testimonials: React.FC = () => {
           </div>
         </div>
 
-        <div
-          className="relative grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2.4fr)] items-stretch"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
+        <div className="relative grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2.4fr)] items-stretch">
           {/* Main card */}
-          <article className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-[0_22px_60px_rgba(15,23,42,0.12)] p-8 sm:p-10 transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
+          <article
+            className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-[0_22px_60px_rgba(15,23,42,0.12)] p-8 sm:p-10 transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
             <div className="absolute inset-px rounded-[1.4rem] bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.13),transparent_55%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.12),transparent_55%)] opacity-80" />
 
             <div className="relative flex flex-col gap-8">
@@ -235,6 +235,8 @@ const Testimonials: React.FC = () => {
                   key={t.id}
                   type="button"
                   onClick={() => goTo(index)}
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
                   className={`${baseClasses} ${
                     isActive
                       ? 'border-indigo-300 shadow-[0_18px_40px_rgba(79,70,229,0.25)] scale-[1.02] bg-white'
