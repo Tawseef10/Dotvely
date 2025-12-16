@@ -53,6 +53,7 @@ const AUTO_PLAY_INTERVAL = 7000; // ms
 const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const goTo = (index: number) => {
     const total = testimonials.length;
@@ -62,6 +63,19 @@ const Testimonials: React.FC = () => {
 
   const goNext = () => goTo(activeIndex + 1);
   const goPrev = () => goTo(activeIndex - 1);
+
+  // Soft parallax dotted-line frame following the mouse (similar to hero)
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Auto play with pause on hover
   useEffect(() => {
@@ -82,11 +96,41 @@ const Testimonials: React.FC = () => {
       className="relative py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50/70 overflow-hidden"
       aria-label="Client testimonials"
     >
-      {/* Ambient blobs */}
-      <div className="pointer-events-none absolute inset-0 opacity-70">
-        <div className="absolute -left-24 top-6 h-56 w-56 rounded-full bg-indigo-300/30 blur-3xl animate-blob" />
-        <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-sky-300/25 blur-3xl animate-blob" />
-        <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-200/30 blur-3xl animate-float" />
+      {/* Animated background: blobs + dotted-line frames that react to the mouse */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Ambient blobs */}
+        <div className="absolute inset-0 opacity-70">
+          <div className="absolute -left-24 top-6 h-56 w-56 rounded-full bg-indigo-300/30 blur-3xl animate-blob" />
+          <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-sky-300/25 blur-3xl animate-blob" />
+          <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-200/30 blur-3xl animate-float" />
+        </div>
+
+        {/* Dotted line frames */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute left-6 right-20 top-10 h-32 rounded-3xl border border-dashed border-slate-200/80 bg-white/40 backdrop-blur-[2px]"
+            style={{
+              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.01}px)`,
+              transition: 'transform 180ms ease-out',
+            }}
+          />
+
+          <div
+            className="absolute left-24 right-4 bottom-8 h-28 rounded-3xl border border-dashed border-indigo-200/80 bg-indigo-50/40"
+            style={{
+              transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * -0.015}px)`,
+              transition: 'transform 220ms ease-out',
+            }}
+          />
+
+          <div
+            className="absolute right-12 top-1/2 h-32 w-32 -translate-y-1/2 rounded-3xl border border-dashed border-slate-200/80"
+            style={{
+              transform: `translate(${mousePosition.x * 0.015}px, ${mousePosition.y * -0.02}px) rotate(3deg)`,
+              transition: 'transform 200ms ease-out',
+            }}
+          />
+        </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
