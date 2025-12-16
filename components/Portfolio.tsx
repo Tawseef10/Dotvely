@@ -10,28 +10,28 @@ const projects = [
     id: 1, 
     title: "Urban Coffee", 
     category: "E-Commerce", 
-    img: "https://source.unsplash.com/featured/?coffee,coffee-shop",
+    img: "https://picsum.photos/seed/coffee/600/400",
     url: "https://your-local-website-1.com" 
   },
   { 
     id: 2, 
     title: "Apex Construction", 
     category: "Business", 
-    img: "https://source.unsplash.com/featured/?construction,building",
+    img: "https://picsum.photos/seed/construction/600/400",
     url: "https://your-local-website-2.com" 
   },
   { 
     id: 3, 
     title: "Lumina Studio", 
     category: "Portfolio", 
-    img: "https://source.unsplash.com/featured/?creative,studio",
+    img: "https://picsum.photos/seed/studio/600/400",
     url: "https://your-local-website-3.com" 
   },
   { 
     id: 4, 
     title: "Fresh Eats", 
     category: "Restaurant", 
-    img: "https://source.unsplash.com/featured/?restaurant,food",
+    img: "https://picsum.photos/seed/restaurant/600/400",
     url: "https://your-local-website-4.com" 
   },
 ];

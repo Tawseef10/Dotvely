@@ -6,14 +6,14 @@ interface AllProjectsProps {
 }
 
 const allProjects = [
-  { id: 1, title: "Urban Coffee", category: "E-Commerce", img: "https://source.unsplash.com/featured/?coffee,coffee-shop" },
-  { id: 2, title: "Apex Construction", category: "Business", img: "https://source.unsplash.com/featured/?construction,building" },
-  { id: 3, title: "Lumina Studio", category: "Portfolio", img: "https://source.unsplash.com/featured/?creative,studio" },
-  { id: 4, title: "Fresh Eats", category: "Restaurant", img: "https://source.unsplash.com/featured/?restaurant,food" },
-  { id: 5, title: "Tech flow", category: "SaaS", img: "https://source.unsplash.com/featured/?saas,technology" },
-  { id: 6, title: "Green Garden", category: "Local Business", img: "https://source.unsplash.com/featured/?garden,plants" },
-  { id: 7, title: "Dr. Smith Clinic", category: "Healthcare", img: "https://source.unsplash.com/featured/?clinic,healthcare" },
-  { id: 8, title: "Law & Order", category: "Legal", img: "https://source.unsplash.com/featured/?law,lawyer" },
+  { id: 1, title: "Urban Coffee", category: "E-Commerce", img: "https://picsum.photos/seed/coffee/600/400" },
+  { id: 2, title: "Apex Construction", category: "Business", img: "https://picsum.photos/seed/construction/600/400" },
+  { id: 3, title: "Lumina Studio", category: "Portfolio", img: "https://picsum.photos/seed/studio/600/400" },
+  { id: 4, title: "Fresh Eats", category: "Restaurant", img: "https://picsum.photos/seed/restaurant/600/400" },
+  { id: 5, title: "Tech flow", category: "SaaS", img: "https://picsum.photos/seed/tech/600/400" },
+  { id: 6, title: "Green Garden", category: "Local Business", img: "https://picsum.photos/seed/garden/600/400" },
+  { id: 7, title: "Dr. Smith Clinic", category: "Healthcare", img: "https://picsum.photos/seed/clinic/600/400" },
+  { id: 8, title: "Law & Order", category: "Legal", img: "https://picsum.photos/seed/law/600/400" },
 ];
 
 const AllProjects: React.FC<AllProjectsProps> = ({ onBack }) => {
