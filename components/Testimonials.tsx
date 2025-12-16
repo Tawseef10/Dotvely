@@ -96,34 +96,16 @@ const Testimonials: React.FC = () => {
       className="relative py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50/70 overflow-hidden"
       aria-label="Client testimonials"
     >
-      {/* Animated background: liquid mouse-follow glow + dotted-line frames */}
+      {/* Animated background: blobs + dotted-line frames that react to the mouse */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Liquid glow following cursor (similar to hero, but softer) */}
-        <div
-          className="absolute w-[520px] h-[520px] bg-indigo-400/14 rounded-full blur-[90px] mix-blend-multiply transition-transform duration-150 ease-out"
-          style={{
-            left: -260,
-            top: -260,
-            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-          }}
-        />
-        <div
-          className="absolute w-[420px] h-[420px] bg-sky-300/18 rounded-full blur-[80px] mix-blend-multiply transition-transform duration-300 ease-out"
-          style={{
-            left: -210,
-            top: -210,
-            transform: `translate(${mousePosition.x * 0.8}px, ${mousePosition.y * 0.8}px)`,
-          }}
-        />
-
-        {/* Soft ambient blobs */}
+        {/* Ambient blobs */}
         <div className="absolute inset-0 opacity-70">
-          <div className="absolute -left-24 top-6 h-56 w-56 rounded-full bg-indigo-300/25 blur-3xl animate-blob" />
-          <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-sky-300/20 blur-3xl animate-blob" />
-          <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-200/25 blur-3xl animate-float" />
+          <div className="absolute -left-24 top-6 h-56 w-56 rounded-full bg-indigo-300/30 blur-3xl animate-blob" />
+          <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-sky-300/25 blur-3xl animate-blob" />
+          <div className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-200/30 blur-3xl animate-float" />
         </div>
 
-        {/* Dotted line frames with parallax */}
+        {/* Dotted line frames */}
         <div className="absolute inset-0">
           <div
             className="absolute left-6 right-20 top-10 h-32 rounded-3xl border border-dashed border-slate-200/80 bg-white/40 backdrop-blur-[2px]"

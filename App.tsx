@@ -30,23 +30,20 @@ const App: React.FC = () => {
     setCurrentView('home');
   };
 
-  // Liquid-like click ripple for hero and testimonials sections
+  // Liquid-like click ripple limited to hero section
   useEffect(() => {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
     const handleClick = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
       const x = e.clientX;
       const y = e.clientY;
 
-      const withinElement = (el: HTMLElement | null) => {
-        if (!el) return false;
-        const rect = el.getBoundingClientRect();
-        return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-      };
-
-      const hero = document.getElementById('hero');
-      const testimonials = document.getElementById('testimonials');
-
-      // Only trigger ripple when clicking inside hero or testimonials sections
-      if (!withinElement(hero) && !withinElement(testimonials)) return;
+      // Ensure the click is actually within the hero bounds
+      if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+        return;
+      }
 
       const id = Date.now() + Math.random();
 
@@ -58,8 +55,8 @@ const App: React.FC = () => {
       }, 700);
     };
 
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    hero.addEventListener('click', handleClick);
+    return () => hero.removeEventListener('click', handleClick);
   }, []);
 
   return (
