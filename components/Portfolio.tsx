@@ -8,30 +8,30 @@ interface PortfolioProps {
 const projects = [
   { 
     id: 1, 
-    title: "Urban Coffee", 
-    category: "E-Commerce", 
-    img: "https://picsum.photos/seed/coffee/600/400",
-    url: "https://your-local-website-1.com" 
+    title: "Dotvely Studios", 
+    category: "Web Agency", 
+    img: "https://image2url.com/r2/bucket2/images/1768059360431-9aba5450-b173-43c9-8012-58cf13bfab1e.png",
+    url: "https://dotvely.vercel.app/" 
   },
   { 
     id: 2, 
-    title: "Apex Construction", 
-    category: "Business", 
-    img: "https://picsum.photos/seed/construction/600/400",
-    url: "https://your-local-website-2.com" 
+    title: "BluBloom Interiors", 
+    category: "Interior Designer", 
+    img: "https://image2url.com/r2/bucket3/images/1768059406953-eac2a3d6-e1bf-40df-8ae4-5b354e687a7c.png",
+    url: "https://blubloom-interior.vercel.app/" 
   },
   { 
     id: 3, 
-    title: "Lumina Studio", 
-    category: "Portfolio", 
-    img: "https://picsum.photos/seed/studio/600/400",
+    title: "Pitambra Books", 
+    category: "Printing Agency", 
+    img: "https://image2url.com/r2/bucket3/images/1768059452162-e98f73eb-0dc1-4b42-bc87-9de3ab9df5ec.png",
     url: "https://your-local-website-3.com" 
   },
   { 
     id: 4, 
-    title: "Fresh Eats", 
-    category: "Restaurant", 
-    img: "https://picsum.photos/seed/restaurant/600/400",
+    title: "Tawseef's Portfolio", 
+    category: "Portfolio", 
+    img: "https://image2url.com/r2/bucket2/images/1768059834351-28e68e33-8a6f-469f-9d73-442ba9108184.png",
     url: "https://your-local-website-4.com" 
   },
 ];
